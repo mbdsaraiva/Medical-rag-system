@@ -1,0 +1,15 @@
+data/
+chroma_db/
+
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+.ipynb_checkpoints/
+
+.vscode/
+.idea/
+
+.env
