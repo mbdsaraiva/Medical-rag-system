@@ -10,7 +10,7 @@ from src.config import EMBEDDING_MODEL_NAME, EMBEDDINGS_DIR
 
 class EmbeddingModel:
     """
-    Wrapper for sentence-transformers models
+    wrapper for sentence-transformers models
     
     This class handles:
     - Loading embedding models
