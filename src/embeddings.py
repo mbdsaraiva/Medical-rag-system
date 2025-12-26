@@ -27,11 +27,11 @@ class EmbeddingModel:
             model_name: Name of the sentence-transformers model
                        Default: all-MiniLM-L6-v2 (fast, 384 dimensions)
         """
-        print(f"🔄 Loading embedding model: {model_name}...")
+        print(f" Loading embedding model: {model_name}...")
         self.model_name = model_name
         self.model = SentenceTransformer(model_name)
         self.embedding_dim = self.model.get_sentence_embedding_dimension()
-        print(f"✅ Model loaded successfully!")
+        print(f" Model loaded successfully!")
         print(f"   • Dimensions: {self.embedding_dim}")
         print(f"   • Max sequence length: {self.model.max_seq_length}")
     
@@ -138,12 +138,12 @@ class EmbeddingModel:
             'metadata': metadata or {}
         }
         
-        print(f"💾 Saving embeddings to {filepath}...")
+        print(f"Saving embeddings to {filepath}...")
         with open(filepath, 'wb') as f:
             pickle.dump(data, f)
         
         size_mb = filepath.stat().st_size / 1024 / 1024
-        print(f"✅ Saved successfully! ({size_mb:.2f} MB)")
+        print(f"Saved successfully! ({size_mb:.2f} MB)")
     
     def load_embeddings(self, filename: str) -> dict:
         """
@@ -160,11 +160,11 @@ class EmbeddingModel:
         if not filepath.exists():
             raise FileNotFoundError(f"Embeddings file not found: {filepath}")
         
-        print(f"📂 Loading embeddings from {filepath}...")
+        print(f"Loading embeddings from {filepath}...")
         with open(filepath, 'rb') as f:
             data = pickle.load(f)
         
-        print(f"✅ Loaded {data['embeddings'].shape[0]} embeddings")
+        print(f"Loaded {data['embeddings'].shape[0]} embeddings")
         return data
 
 
@@ -185,7 +185,7 @@ def generate_document_embeddings(df, text_column: str = 'answer') -> np.ndarray:
     Returns:
         Numpy array of embeddings (shape: n_docs x embedding_dim)
     """
-    print(f"\n🚀 Generating embeddings for {len(df)} documents...")
+    print(f"\nGenerating embeddings for {len(df)} documents...")
     print(f"   Column: '{text_column}'")
     
     # initialize model
@@ -219,7 +219,7 @@ def generate_document_embeddings(df, text_column: str = 'answer') -> np.ndarray:
 
 if __name__ == "__main__":
     # test the embedding model
-    print("🧪 Testing Embedding Model\n")
+    print("Testing Embedding Model\n")
     
     # initialize model
     model = EmbeddingModel()
@@ -248,8 +248,8 @@ if __name__ == "__main__":
     print(f"Text 1: {text1}")
     print(f"Text 2: {text2}")
     print(f"Text 3: {text3}")
-    print(f"\nSimilarity (1 vs 2): {sim_12:.4f} ✅ (high - similar topics)")
-    print(f"Similarity (1 vs 3): {sim_13:.4f} ❌ (low - different topics)")
+    print(f"\nSimilarity (1 vs 2): {sim_12:.4f} (high - similar topics)")
+    print(f"Similarity (1 vs 3): {sim_13:.4f} (low - different topics)")
     
     # test 3: Batch similarity (ranking)
     print("\n" + "="*60)
